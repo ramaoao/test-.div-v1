@@ -8,6 +8,7 @@ const questionNumber = document.querySelector('.test__progress-question-number')
 const testContent = document.querySelector('.test__content');
 const testTitle = document.querySelector('.test__title');
 let optionButtons;
+let circlesClick;
 
 let activeQuestionIdx = 0;
 let numPoints = 0;
@@ -127,7 +128,7 @@ function displayQuestion() {
         button.addEventListener('click', checkingAnswers);
     });
 
-    const circlesClick = document.querySelectorAll('.test__circle');
+    circlesClick = document.querySelectorAll('.test__circle');
     circlesClick.forEach(circle => {
         circle.addEventListener('click', (event) => {
             const button = event.target.nextElementSibling;
@@ -185,8 +186,12 @@ function checkingAnswers(event) {
     });
 
     optionButtons.forEach(button => {
-        button.removeEventListener('click', checkingAnswers);
+        button.style.pointerEvents = 'none';
     });
+
+    circlesClick.forEach(circle => {
+        circle.style.pointerEvents = 'none';
+    })
 
     activeQuestionIdx++
     
